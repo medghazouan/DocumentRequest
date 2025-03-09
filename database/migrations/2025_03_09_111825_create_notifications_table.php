@@ -15,10 +15,7 @@ class CreateNotificationsTable extends Migration
             // Clé étrangère vers l’utilisateur destinataire
             $table->unsignedBigInteger('idDestinataire');
 
-            // Clé étrangère vers le certificat concerné
-            $table->unsignedBigInteger('idCertificat');
-
-            $table->boolean('isRead')->default(false);
+           
             $table->dateTime('dateEnvoi')->useCurrent();
 
             $table->timestamps();
@@ -28,10 +25,7 @@ class CreateNotificationsTable extends Migration
                   ->on('utilisateurs')
                   ->onDelete('cascade');
 
-            $table->foreign('idCertificat')
-                  ->references('idCertificat')
-                  ->on('certificats')
-                  ->onDelete('cascade');
+            
         });
     }
 

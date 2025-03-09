@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Document extends Model {
+class Document extends Model { 
     public function demandes() {
         return $this->hasMany(DemandeDocument::class, 'idDocument');
     }

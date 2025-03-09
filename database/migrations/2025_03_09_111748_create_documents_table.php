@@ -12,26 +12,17 @@ class CreateDocumentsTable extends Migration
             $table->id('idDocument');
             $table->string('titre');
             $table->string('type');
-            $table->boolean('copiePapier')->default(false);
-            $table->dateTime('dateCreation')->useCurrent();
+            $table->string('societe')->nullable();
+            $table->string('direction')->nullable();
+            $table->string('service')->nullable();
 
-            // Relation 1:N avec DemandeDocument
-            $table->unsignedBigInteger('idDemande');
+            // Statut de la demande : adaptez la liste d'enums selon votre logique
+            $table->enum('statut', ['disponible', 'indisponible'])->default('disponible');
 
-            // Relation 1:N avec Certificat
-            $table->unsignedBigInteger('idCertificat');
 
             $table->timestamps();
 
-            $table->foreign('idDemande')
-                  ->references('idDemande')
-                  ->on('demande_documents')
-                  ->onDelete('cascade');
-
-            $table->foreign('idCertificat')
-                  ->references('idCertificat')
-                  ->on('certificats')
-                  ->onDelete('cascade');
+            
         });
     }
 
